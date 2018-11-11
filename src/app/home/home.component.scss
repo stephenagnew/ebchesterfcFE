@@ -1,0 +1,53 @@
+.background-image{
+    background-image: url("src\\images\\background.PNG");
+    height: 100vh;
+    max-width: 100vw;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: grayscale(100%);
+}
+
+.jumbotron{
+    background-color: rgba(44,44,45,.5);
+    color: #f0f8ff;
+    width: 100%;
+    margin: auto;
+}
+
+.banner{
+    height: 70vh;
+    width: 100%;
+    color: #fff;
+    background-image: url("src\\images\\banner.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    padding: 8%;
+
+    h1{
+        font-family: HelveticaNeueW02,sans-serif;
+        font-size: 3vw;
+        font-weight: 700;
+        line-height: 1.2;
+    }
+
+    p{
+        font-family: TimesNewRoman,Times New Roman,Times,Baskerville,Georgia,serif;
+        font-style: italic;
+        font-size: 18px;
+        line-height: 26px;
+        letter-spacing: .4px;
+    }
+
+    img{
+        border-radius: 50%;
+        height: 10vw;
+        margin: 10px;
+    }
+}
