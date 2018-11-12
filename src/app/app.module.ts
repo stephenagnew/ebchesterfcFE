@@ -12,6 +12,7 @@ import { AngularDraggableModule } from 'angular2-draggable';
 import { MatchReportComponent } from './match-report/match-report.component';
 import { MatchesComponent } from './matches/matches.component';
 import { MatchesService } from './matches/matches.service';
+import { PlayerService } from './stats/player.service';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { MatchesService } from './matches/matches.service';
   ],
   providers: [
     AuthService,
-    MatchesService
+    MatchesService,
+    PlayerService
   ],
   bootstrap: [AppComponent]
 })
