@@ -1,0 +1,39 @@
+.stat-card{
+    flex:1;
+    border:solid 0.5px;
+    border-color:lightgray;
+    box-shadow: 5px 10px 8px #888888;
+    margin: 20px;
+    border-radius:10px;
+}
+
+.header{
+    text-align: left;
+    h4{
+        padding: 0.5rem;
+    }
+}
+
+.player-row{
+    display:flex;
+    flex-wrap: wrap;
+    padding:0.5rem;
+
+    .player-item{
+        flex:1
+    }
+    .index{
+        flex:0.20;
+    }
+    .right{
+        text-align:right;
+        padding-right:2rem;
+    }
+
+}
+
+@media screen and (max-width: 992px) {
+    .row{
+        flex-direction: column;
+    }
+}
