@@ -1,35 +1,45 @@
 <div class="container-fluid">
   <div class="row">
+    <h1>Player Statistics</h1>
+  </div>
+</div>
+
+
+<div class="container-fluid">
+  <div class="row">
 
       <div class="stat-card">
         <div class="header">
           <h4>Goals</h4>
         </div>
-        <div class="player-row" *ngFor="let player of players, let i = index">
+        <div [ngClass]="i == 0 ? 'player-row hero' : 'player-row'" *ngFor="let player of players, let i = index">
             <div class="index">{{i + 1}}</div>
             <div class="player-item">{{player.firstName}} {{player.lastName}}</div>
+            <img *ngIf="i == 0" class="trophy" src="src\\images\\winner.PNG">
             <div class="player-item right">{{player.playerSeasonStats.goals}}</div>
         </div>
       </div>
 
       <div class="stat-card">
         <div class="header">
-          <h4>Assists</h4>
+          <h4>Assist</h4>
         </div>
-        <div class="player-row" *ngFor="let player of players, let i = index">
+        <div [ngClass]="i == 0 ? 'player-row hero' : 'player-row'" *ngFor="let player of players, let i = index">
             <div class="index">{{i + 1}}</div>
             <div class="player-item">{{player.firstName}} {{player.lastName}}</div>
+            <img *ngIf="i == 0" class="trophy" src="src\\images\\winner.PNG">
             <div class="player-item right">{{player.playerSeasonStats.goals}}</div>
         </div>
       </div>
 
       <div class="stat-card">
         <div class="header">
-          <h4>MoM</h4>
+          <h4>Most MoM's</h4>
         </div>
-        <div class="player-row" *ngFor="let player of players, let i = index">
+        <div [ngClass]="i == 0 ? 'player-row hero' : 'player-row'" *ngFor="let player of players, let i = index">
             <div class="index">{{i + 1}}</div>
             <div class="player-item">{{player.firstName}} {{player.lastName}}</div>
+            <img *ngIf="i == 0" class="trophy" src="src\\images\\winner.PNG">
             <div class="player-item right">{{player.playerSeasonStats.goals}}</div>
         </div>
       </div>
