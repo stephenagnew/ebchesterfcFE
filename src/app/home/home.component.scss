@@ -1,11 +1,22 @@
 .background-image{
     background-image: url("src\\images\\background.PNG");
-    height: 100vh;
     max-width: 100vw;
-    background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+img{
+    border-radius: 50%;
+    height: 10vw;
+    margin: 10px;
+}
+
+
+
+.title{
+    flex:1;
+    color: #f0f8ff;
 }
 
 .jumbotron{
@@ -16,7 +27,7 @@
 }
 
 .banner{
-    height: 70vh;
+    height: 40rem;
     width: 100%;
     color: #fff;
     background-image: url("src\\images\\banner.png");
@@ -34,6 +45,7 @@
         font-size: 3vw;
         font-weight: 700;
         line-height: 1.2;
+        color: #fff;
     }
 
     p{
