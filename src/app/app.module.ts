@@ -13,6 +13,7 @@ import { MatchReportComponent } from './match-report/match-report.component';
 import { MatchesComponent } from './matches/matches.component';
 import { MatchesService } from './matches/matches.service';
 import { PlayerService } from './stats/player.service';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { PlayerService } from './stats/player.service';
     NavBarComponent,
     StatsComponent,
     MatchReportComponent,
-    MatchesComponent
+    MatchesComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
