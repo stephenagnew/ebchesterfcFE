@@ -6,6 +6,31 @@
     background-size: cover;
 }
 
+.flex-container{
+    display:flex;
+    height:500px;
+}
+
+.flex-item{
+    flex: 0 0 50%;
+    max-width: 100%;
+    background-image: url("src\\images\\background3.PNG");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin:2px;
+}
+
+.flex-item2{
+    flex: 0 0 50%;
+    max-width: 100%;
+    background-image: url("src\\images\\background2.PNG");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin:2px;
+}   
+
 img{
     border-radius: 50%;
     height: 10vw;
@@ -60,5 +85,11 @@ img{
         border-radius: 50%;
         height: 10vw;
         margin: 10px;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .flex-container{
+        flex-direction: column;
     }
 }
