@@ -1,7 +1,65 @@
 <div class="container-fluid">
-  <div class="row">
-    <div *ngFor="let result of results">
-        {{result.homeTeam}}
+  <div class="flex-container">
+
+    <div class="flex-item gaffer">
+      <h1>Last Match</h1>
+      <div class="last-game">
+        <div class="team">{{lastMatch.homeTeam}}</div>
+        <div class="goals">{{lastMatch.homeGoals}}</div>
+        <div class="flex-space"></div>
+        <div class="goals">{{lastMatch.awayGoals}}</div>
+        <div class="team">{{lastMatch.awayTeam}}</div>
+      </div>
+      <div class="last-match-info">
+          <p>{{lastMatch.date | date: 'dd/MM/yyyy HH:mm'}}</p>
+          <p>{{lastMatch.venue}}</p>
+      </div>
     </div>
+    
+    <div class="flex-space"></div>
+  
+    <div class="flex-item banner">
+      <h1>Next Match</h1>
+      <div class="last-game">
+        <div class="team">{{nextMatch.homeTeam}}</div>
+        <div class="versus">V</div>
+        <div class="team">{{nextMatch.awayTeam}}</div>
+      </div>
+      <div class="last-match-info">
+          <p>{{nextMatch.date | date: 'dd/MM/yyyy HH:mm'}}</p>
+          <p>{{nextMatch.venue}}</p>
+      </div>
+    </div>
+
   </div>
 </div>
+  
+<div class="container-fluid">
+  <div class="row">
+      <button class="btn btn-outline-warning right" (click)="fixtureToggle()">Fixtures</button>
+      <button class="btn btn-outline-warning" (click)="resultsToggle()">Results</button>
+  </div>
+    
+
+    <div class="flex-container">
+
+      <div *ngIf="showFixtures" class="flex-item">
+          <div *ngFor="let fixture of fixtures" class="result-row">
+              <div class="team">{{fixture.homeTeam}}</div>
+              <div class="versus">V</div>
+              <div class="team">{{fixture.awayTeam}}</div>
+          </div>
+      </div>
+
+      <div *ngIf="showResults" class="flex-item">
+          <div *ngFor="let result of results" [ngClass]="resultClass(result)">
+              <div class="team">{{result.homeTeam}}</div>
+              <div class="goals">{{result.homeGoals}}</div>
+              <div class="flex-space"></div>
+              <div class="goals">{{result.awayGoals}}</div>
+              <div class="team">{{result.awayTeam}}</div>
+          </div>
+      </div>
+      
+    </div>
+  </div>

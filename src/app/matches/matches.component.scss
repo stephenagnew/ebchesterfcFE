@@ -1,0 +1,118 @@
+.flex-container{
+    display:flex;
+    height:100%;
+}
+
+.flex-space{
+    flex:0.05;
+}
+
+.flex-item{
+    flex: 1;
+    max-width: 100%;
+    margin:4px;
+    background-color: rgba(255, 163, 26, 0.5);
+}
+
+.row{
+    justify-content: center;
+}
+
+.result-row{
+    display:flex;
+    flex-wrap: wrap;
+    border: solid;
+    border-color: orange;
+    margin-bottom: 1rem;
+    height:4rem;
+
+    .team{
+        flex:1;
+        text-align: center;
+        align-self: center;
+        font-weight: 600;
+    }
+    .versus{
+        flex:0.2;
+        text-align: center;
+        align-self: center;
+    }
+    .goals{
+        flex:0.25;
+        text-align: center;
+        background-color: black;
+        border: solid;
+        font-size: xx-large;
+    }
+
+}
+
+.win{
+    background-color: green;
+}
+.draw{
+    background-color: orange;
+}
+.lose{
+    background-color: red;
+}
+.right{
+    margin-right:2rem;
+}
+
+.gaffer{
+    background-image: url("src\\images\\gaffer.PNG");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.banner{
+    background-image: url("src\\images\\banner.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.last-match-info{
+    flex:1;
+    text-align: center;
+    background-color: white;
+    color: black;
+    width:50%;
+}
+
+.last-game{
+    display:flex;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+    height:7rem;
+
+    .team{
+        flex:1;
+        text-align: center;
+        align-self: center;
+        font-weight: 600;
+    }
+    .versus{
+        flex:0.2;
+        text-align: center;
+        align-self: center;
+    }
+    .goals{
+        flex:1.25;
+        text-align: center;
+        align-self: center;
+        background-color: black;
+        border: solid;
+        font-size: xx-large;
+        box-shadow: 5px 20px 20px -16px;
+    }
+}
+
+
+@media screen and (max-width: 992px) {
+    .flex-container{
+        flex-direction: column;
+    }
+}
