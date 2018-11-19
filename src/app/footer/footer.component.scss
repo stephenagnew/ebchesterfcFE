@@ -18,7 +18,10 @@
         font-size: 12px;
     }
 
-    img{
+    .badge{
+        background-image: url("src\\images\\badge.jpg");
+        background-size: 100% 100%;
+        width:6rem;
         border-radius: 50%;
         height: 6rem;
         margin: 10px;

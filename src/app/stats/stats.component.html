@@ -16,7 +16,7 @@
             <div [ngClass]="i == 0 ? 'player-row hero' : 'player-row'" *ngFor="let player of playerGoals, let i = index">
                 <div class="index">{{i + 1}}</div>
                 <div class="player-item">{{player.firstName}} {{player.lastName}}</div>
-                <img *ngIf="i == 0" class="trophy" src="src\\images\\winner.PNG">
+                <div *ngIf="i == 0" class="trophy"><span></span></div>
                 <div class="player-item right">{{player.playerSeasonStats.goals}}</div>
             </div>
         </div>
@@ -31,7 +31,7 @@
           <div [ngClass]="i == 0 ? 'player-row hero' : 'player-row'" *ngFor="let player of playerAssists, let i = index">
             <div class="index">{{i + 1}}</div>
             <div class="player-item">{{player.firstName}} {{player.lastName}}</div>
-            <img *ngIf="i == 0" class="trophy" src="src\\images\\winner.PNG">
+            <div *ngIf="i == 0" class="trophy"><span></span></div>
             <div class="player-item right">{{player.playerSeasonStats.assists}}</div>
           </div>
           </div>
@@ -45,7 +45,7 @@
           <div [ngClass]="i == 0 ? 'player-row hero' : 'player-row'" *ngFor="let player of playerMoM, let i = index">
             <div class="index">{{i + 1}}</div>
             <div class="player-item">{{player.firstName}} {{player.lastName}}</div>
-            <img *ngIf="i == 0" class="trophy" src="src\\images\\winner.PNG">
+            <div *ngIf="i == 0" class="trophy"><span></span></div>
             <div class="player-item right">{{player.playerSeasonStats.mom}}</div>
           </div>
           </div>

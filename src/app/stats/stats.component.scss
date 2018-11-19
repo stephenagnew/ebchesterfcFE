@@ -10,6 +10,8 @@
     height:100%;
 }
 
+
+
 .header{
     text-align: left;
     h4{
@@ -43,6 +45,9 @@
         padding-right:2rem;
     }
     .trophy{
+        background-image: url("src\\images\\winner.png");
+        background-size: 100% 100%;
+        flex:1;
         height: 6rem;
         border-radius: 100%;
     }
