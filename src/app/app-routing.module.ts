@@ -5,6 +5,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { MatchReportComponent } from './match-report/match-report.component';
 import { StatsComponent } from './stats/stats.component';
 import { MatchesComponent } from './matches/matches.component';
+import { AuthGuardService } from './shared/auth-guard.service';
 
 const routes: Routes = [
   {
@@ -26,13 +27,13 @@ const routes: Routes = [
   },
   {
     path: 'dashboard', 
-    component: DashboardComponent
-    //add a route guard here 
+    component: DashboardComponent,
+    canActivate: [AuthGuardService]
   },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { useHash: true })],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
