@@ -1,0 +1,26 @@
+## Build Stage ##
+
+FROM node:alpine as builder
+
+WORKDIR /ebchesterportal
+COPY package.json package-lock.json ./
+RUN npm i
+
+COPY . .
+
+# Build the angular app
+RUN npm install @angular/cli -g
+RUN ng build
+
+## Setup Stage ##
+
+FROM nginx:alpine
+
+# Copy nginx server config
+COPY nginx.conf /etc/nginx/nginx.conf
+# Remove default nginx site:
+RUN rm -rf /usr/share/nginx/html/*
+## copy src
+COPY --from=builder /ebchesterportal/dist /usr/share/nginx/html
+
+CMD ["nginx", "-g", "daemon off;"]
