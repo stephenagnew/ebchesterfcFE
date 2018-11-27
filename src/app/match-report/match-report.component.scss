@@ -1,0 +1,70 @@
+.pick-team{
+    background-image: url("src\\images\\pick-team.png");
+    margin: 10px;
+    background-size: contain;
+}
+
+.header{
+    text-align: left;
+    h4{
+        padding: 0.5rem;
+    }
+}
+
+.player-row{
+    display:flex;
+    flex-wrap: wrap;
+    padding:0.5rem;
+    background-color: lightgrey;
+    border-radius: 50px;
+    border: solid;
+    margin: 1rem;
+    text-align: center;
+
+    .player-item{
+        flex:1;
+        font-weight: 600;
+
+    }
+    .index{
+        flex:0.20;
+    }
+
+    .stats{
+        flex:1;
+        font-family: cursive;
+    }
+
+    input{
+        width:2rem;
+        border-radius: 100%;
+        background-color: black;
+        color: white;
+        border: solid;
+        text-align: center;
+    }
+
+}
+
+.player-selection{
+    display:flex;
+    flex-wrap: wrap;
+    padding:0.5rem;
+
+    .player-item{
+        flex:0.1;
+        flex-direction: column;
+        cursor: pointer;
+        background-color:rgb(19, 0, 128);
+        border-radius: 5px;
+        color: white;
+        border: solid;
+        margin: 1rem;
+        text-align: center;
+
+    }
+    .index{
+        flex:0.20;
+    }
+
+}

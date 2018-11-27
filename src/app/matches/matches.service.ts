@@ -20,5 +20,9 @@ export class MatchesService {
     return this.http.get(url)
   }
 
+  getMatchById(id: number): Observable<any>{
+    let url = `${EndpointUrl}/match/${id}`
+    return this.http.get(url)
+  }
 
 }

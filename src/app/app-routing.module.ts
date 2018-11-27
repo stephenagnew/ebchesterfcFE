@@ -21,7 +21,7 @@ const routes: Routes = [
     component: StatsComponent
     },
   {
-    path: 'matchreports', 
+    path: 'matchreport/:id', 
     component: MatchReportComponent
     //add a route guard here 
   },
