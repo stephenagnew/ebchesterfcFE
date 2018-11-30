@@ -16,6 +16,7 @@ import { PlayerService } from './stats/player.service';
 import { FooterComponent } from './footer/footer.component';
 import { AuthGuardService } from './shared/auth-guard.service';
 import { AuthInterceptor } from './shared/auth-interceptor.service';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { AuthInterceptor } from './shared/auth-interceptor.service';
     BrowserModule,
     AppRoutingModule,
     AngularDraggableModule,
+    FormsModule,
     HttpClientModule
     
   ],

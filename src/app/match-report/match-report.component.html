@@ -1,10 +1,13 @@
 <div class="container-fluid">
     <div class="row">
       <h1>Match Report</h1>
+      <div *ngIf="authService.isAuthenticated()">
+          <i class="material-icons edit" (click)="edit()">edit</i>
+        </div>
     </div>
   </div>
-  
-<div class="container-fluid">
+
+<div *ngIf="loaded" class="container-fluid">
     <div class="row">
   
         <div class="stat-card">
@@ -12,13 +15,29 @@
             <h4>Game Information</h4>
           </div>
           <div class="collapse" id="game">
-              <div>
-                  <div>{{selectedGame.homeTeam}}</div>
-                  <div>{{selectedGame.awayTeam}}</div>
-                  <div>{{selectedGame.homeGoals}}</div>
-                  <div>{{selectedGame.awayGoals}}</div>
-                  <div>{{selectedGame.date}}</div>
-                  <div>{{selectedGame.venue}}</div>
+              <div class="result-row">
+                  <div class="team">{{selectedGame.homeTeam}}</div>
+                  <div class="versus">V</div>
+                  <div class="team">{{selectedGame.awayTeam}}</div>
+              </div>
+              <div *ngIf="editMode" class="result-row">
+                    <div class="goals"><input type="number" [(ngModel)]="selectedGame.homeGoals"></div>
+                    <div class="versus"><span></span></div>
+                    <div class="goals"><input type="number" [(ngModel)]="selectedGame.awayGoals"></div>
+              </div>
+              <div *ngIf="!editMode" class="result-row">
+                    <div class="goals">{{selectedGame.homeGoals}}</div>
+                    <div class="versus"><span></span></div>
+                    <div class="goals">{{selectedGame.awayGoals}}</div>
+              </div>
+              <div class="result-row">
+                    <div class="text">{{selectedGame.date | date: 'dd/MM/yyyy HH:mm'}}</div>
+              </div>
+              <div *ngIf="!editMode" class="result-row">
+                    <div class="text">{{selectedGame.venue}}</div>
+              </div>
+              <div *ngIf="editMode" class="result-row">
+                    <div class="text"><input type="text" [(ngModel)]="selectedGame.venue"></div>
               </div>
           </div>          
         </div>
@@ -27,37 +46,50 @@
 
     <div class="row">
   
-        <div class="stat-card">
+        <div class="stat-card pick-team">
           <div class="header navbar-toggler" data-toggle="collapse" data-target="#playerMatch">
-            <h4>Team Selection and Match Statistics</h4>
+            <h4>Player Stats</h4>
           </div>
           <div class="collapse" id="playerMatch">
-              <div class="player-row" *ngFor="let player of selectedPlayers, let i = index">
-                  <div class="index">{{i + 1}}</div>
-                  <div class="player-item">{{player.firstName}} {{player.lastName}}</div>
-                  <div class="stats">Goals:<input (change)="onSelectGoals(player, $event.target.value)" type="number" value="0" min="0"></div>
-                  <div class="stats">Assists:<input (change)="onSelectAssists(player, $event.target.value)" type="number" value="0" min="0"></div>
-                  <div class="stats">Mom:<input (change)="onSelectMom(player, $event.target.value)" type="number" min="0" value="0" max="1"></div>
-                  <div (click)="removePlayer(player)"><i class="material-icons">delete</i></div>
-              </div>
-              <div><button class="btn btn-primary">Save</button></div>
+              <ng-container *ngIf="editMode">
+                    <div class="player-row" *ngFor="let player of selectedPlayers, let i = index">
+                            <div class="index">{{i + 1}}</div>
+                            <div class="player-item">{{player.firstName}} {{player.lastName}}</div>
+                            <div class="stats">Goals:<input type="number" [(ngModel)]="player.playerSeasonStats.goals" min="0"></div>
+                            <div class="stats">Assists:<input [(ngModel)]="player.playerSeasonStats.assists" type="number" min="0"></div>
+                            <div class="stats">Mom:<input [(ngModel)]="player.playerSeasonStats.goals" type="number" min="0" max="1"></div>
+                            <div class="pointer" (click)="removePlayer(player)"><i class="material-icons">delete</i></div>
+                        </div>
+              </ng-container>
+              <ng-container *ngIf="!editMode">
+                    <div class="player-row" *ngFor="let player of selectedPlayers, let i = index">
+                            <div class="index">{{i + 1}}</div>
+                            <div class="player-item">{{player.firstName}} {{player.lastName}}</div>
+                            <div class="stats">Goals:{{player.playerSeasonStats.goals}}</div>
+                            <div class="stats">Assists:{{player.playerSeasonStats.assists}}</div>
+                            <div class="stats">Mom:{{player.playerSeasonStats.mom}}</div>
+                    </div>
+              </ng-container>
+              
+              <div *ngIf="editMode" class="save"><button class="btn btn-primary" (click)="UpdateMatchDetails()">Save</button></div>
           </div>
 
-          <div class="row">
+         
+          
+        </div>
+        
+    </div> 
+    <div class="row" *ngIf="editMode">
             <div class="stat-card">
                 <div class="header navbar-toggler" data-toggle="collapse" data-target="#squad">
                   <h4>Pick Team</h4>
                 </div>
                 <div class="collapse" id="squad">
-                    <div class="player-selection  pick-team">
+                    <div class="player-selection">
                         <div class="player-item" *ngFor="let player of players" (click)="selectPlayer(player)">{{player.firstName}} {{player.lastName}}</div>
                     </div>
                 </div>
                 
               </div>
          </div>
-          
-        </div>
-        
-    </div> 
   </div>

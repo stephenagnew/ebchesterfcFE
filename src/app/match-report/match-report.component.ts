@@ -5,6 +5,7 @@ import { PlayerMatch } from '../matches/player-match';
 import { Match } from '../matches/match';
 import { MatchesService } from '../matches/matches.service';
 import { ActivatedRoute } from '@angular/router';
+import { AuthService } from '../shared/auth.service';
 
 @Component({
   selector: 'match-report',
@@ -17,10 +18,13 @@ export class MatchReportComponent implements OnInit {
   selectedGame: Match;
   players: Player[];
   selectedPlayers: Player[] = new Array<Player>();
+  editMode: boolean = false;
+  loaded: boolean = false;
 
-  constructor(private playerService: PlayerService, private matchService: MatchesService, private route: ActivatedRoute) { 
-
-    this.getPlayers();
+  constructor(private playerService: PlayerService,
+     private matchService: MatchesService,
+      private route: ActivatedRoute, 
+      private authService: AuthService) { 
 
     this.route.params
       .subscribe(params => {
@@ -31,13 +35,14 @@ export class MatchReportComponent implements OnInit {
   }
 
   ngOnInit() {
-      
   }
 
   getMatch(id: number){
     this.matchService.getMatchById(id)
       .subscribe(res => {
         this.selectedGame = res;
+        delete this.selectedGame["_id"];
+        this.getPlayers();
       },
       error => {
         console.log(error)
@@ -48,6 +53,13 @@ export class MatchReportComponent implements OnInit {
     this.playerService.getPlayers()
     .subscribe(res => {
       this.players = res;
+      this.players.forEach((player) => {
+        player.playerSeasonStats = {playerId: player.playerId, appearance: 0, goals: 0, assists: 0, mom: 0}
+      });
+
+      this.syncPlayerData();
+
+      this.loaded = true;
     }, 
     error => {
       console.log(error)
@@ -56,9 +68,6 @@ export class MatchReportComponent implements OnInit {
   }
 
   selectPlayer(player: Player){
-    //let playerMatchStats: PlayerMatch = new PlayerMatch();
-    //playerMatchStats.playerId = player.playerId;
-    //this.selectedGame.playerMatchStats.push(playerMatchStats);
     if(this.selectedPlayers.find(p => p.playerId == player.playerId) === undefined){
       this.selectedPlayers.push(player);
       this.players = this.players.filter(p => {
@@ -76,19 +85,76 @@ export class MatchReportComponent implements OnInit {
   }
 
   onSelectGoals(player: Player, value: number){
-    player.playerSeasonStats.goals = value;
+    player.playerSeasonStats.goals = Number(value);
   }
 
   onSelectAssists(player: Player, value: number){
-    player.playerSeasonStats.assists = value;
+    player.playerSeasonStats.assists = Number(value);
   }
 
   onSelectMom(player: Player, value: number){
-    player.playerSeasonStats.mom = value;
+    player.playerSeasonStats.mom = Number(value);
   }
 
   UpdateMatchDetails(){
-    //Put to Api to update match with the match report
+    this.selectedPlayers.forEach((player) => {
+      if(this.selectedGame.playerMatchStats.find(p => p.playerId == player.playerId) === undefined){
+        this.selectedGame.playerMatchStats.push(player.playerSeasonStats) //In this instance the player season stats have been replaced with game stats.
+      }
+    });
+
+    let gameToUpdate: Match = this.selectedGame;
+
+    this.matchService.updateMatchDetails(gameToUpdate)
+      .subscribe(res => {
+        console.log("SAVED")
+      },
+      error => {
+        console.log(error)
+      });
   }
+
+  edit(){
+    this.editMode = !this.editMode;
+  }
+
+  getFirstName(playerId: number) : string{
+    let player: Player = this.players.find(x => x.playerId == playerId);
+
+    return `${player.firstName} `
+  }
+
+  getLastName(playerId : number) : string{
+    let player: Player = this.players.find(x => x.playerId == playerId);
+
+    return ` ${player.lastName}`
+  }
+
+  syncPlayerData(){
+    if(this.selectedGame.playerMatchStats.length > 0){
+      this.selectedGame.playerMatchStats.forEach((playerMatch) => {
+        let player: Player = {
+            playerId:playerMatch.playerId,
+            firstName: this.getFirstName(playerMatch.playerId),
+            lastName: this.getLastName(playerMatch.playerId),
+            playerSeasonStats: {
+              playerId: playerMatch.playerId,
+              appearance: playerMatch.appearance,
+              goals: playerMatch.goals,
+              assists: playerMatch.assists,
+              mom: playerMatch.mom
+            },
+            previousSeasons : []
+          }
+        if(this.selectedPlayers.find(p => p.playerId == player.playerId) === undefined){
+          this.selectedPlayers.push(player)
+          this.players = this.players.filter(p => {
+            return p.playerId != player.playerId;
+          });
+        }
+      })
+    }
+  }
+
 
 }
