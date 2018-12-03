@@ -6,8 +6,10 @@ import * as auth from 'hellojs';
 // Specific B2C tenant information and policies.
 const tenantName: string = 'ebchester.onmicrosoft.com';
 const signInSignUpPolicyName: string = 'B2C_1_SiUpIn';
-const redirectUri: string = 'http://localhost:4200/dashboard';
-const redirectLogoutUri: string = 'http://localhost:4200/';
+//const redirectUri: string = 'http://localhost:4200/dashboard';
+//const redirectLogoutUri: string = 'http://localhost:4200/';
+const redirectUri: string = 'https://blackhillandebchester.azurewebsites.net/';
+const redirectLogoutUri: string = 'https://blackhillandebchester.azurewebsites.net/';
 const defaultScopes: string = 'openid https://ebchester.onmicrosoft.com/api/read';
 
 @Injectable()
