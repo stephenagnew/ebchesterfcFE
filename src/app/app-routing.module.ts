@@ -23,7 +23,6 @@ const routes: Routes = [
   {
     path: 'matchreport/:id', 
     component: MatchReportComponent
-    //add a route guard here 
   },
   {
     path: 'dashboard', 

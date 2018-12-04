@@ -20,6 +20,7 @@ export class MatchReportComponent implements OnInit {
   selectedPlayers: Player[] = new Array<Player>();
   editMode: boolean = false;
   loaded: boolean = false;
+  saved: boolean = false;
 
   constructor(private playerService: PlayerService,
      private matchService: MatchesService,
@@ -80,6 +81,12 @@ export class MatchReportComponent implements OnInit {
     this.selectedPlayers = this.selectedPlayers.filter(p => {
       return p.playerId != player.playerId; 
     });
+
+    if(this.selectedGame.playerMatchStats.find(p => p.playerId == player.playerId)){
+      this.selectedGame.playerMatchStats = this.selectedGame.playerMatchStats.filter(p => {
+        return p.playerId != player.playerId;
+      })
+    }
     this.players.push(player);
     
   }
@@ -97,6 +104,7 @@ export class MatchReportComponent implements OnInit {
   }
 
   UpdateMatchDetails(){
+    this.saved = false;
     this.selectedPlayers.forEach((player) => {
       if(this.selectedGame.playerMatchStats.find(p => p.playerId == player.playerId) === undefined){
         this.selectedGame.playerMatchStats.push(player.playerSeasonStats) //In this instance the player season stats have been replaced with game stats.
@@ -107,7 +115,8 @@ export class MatchReportComponent implements OnInit {
 
     this.matchService.updateMatchDetails(gameToUpdate)
       .subscribe(res => {
-        console.log("SAVED")
+        this.saved = true;
+        //console.log("SAVED")
       },
       error => {
         console.log(error)

@@ -71,7 +71,10 @@
                     </div>
               </ng-container>
               
-              <div *ngIf="editMode" class="save"><button class="btn btn-primary" (click)="UpdateMatchDetails()">Save</button></div>
+              <div *ngIf="editMode" class="save">
+                  <button class="btn btn-primary" (click)="UpdateMatchDetails()">Save</button>
+                  <i  *ngIf="saved" class="material-icons">check_circle</i>
+                </div>
           </div>
 
          
