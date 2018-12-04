@@ -8,16 +8,19 @@
 
   <div class="collapse navbar-collapse" id="navbarToggleExternalContent">
       <ul class="navbar-nav ml-auto">
+         <li class="nav-item">
+            <a *ngIf="!isAuthenitcated" class="nav-link pointer" (click)="login()">Login</a>
+            <a *ngIf="isAuthenitcated" class="nav-link pointer" (click)="logout()">Logout</a>         
+         </li>
           <li class="nav-item">
               <a class="nav-link" routerLink="/">Home</a>
           </li>
-          <li *ngIf="isAuthenitcated" class="nav-item">
-            <a class="nav-link pointer" routerLink="/dashboard">Dashboard</a>
+          <li class="nav-item">
+            <a class="nav-link pointer" routerLink="/matches">Matches</a>
           </li>
           <li class="nav-item">
-              <a *ngIf="!isAuthenitcated" class="nav-link pointer" (click)="login()">Login</a>
-              <a *ngIf="isAuthenitcated" class="nav-link pointer" (click)="logout()">Logout</a>
-          </li>
+            <a class="nav-link pointer" routerLink="/stats">Player Stats</a>
+          </li>          
       </ul>
   </div>
 </nav>

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatchesService } from './matches.service';
 import { Match } from './match';
+import { Router } from '@angular/router';
+import { MatchReportComponent } from '../match-report/match-report.component';
 
 @Component({
   selector: 'matches',
@@ -16,7 +18,7 @@ export class MatchesComponent implements OnInit {
   private showFixtures: boolean = false;
   private showResults: boolean = true;
 
-  constructor(private matchesService:MatchesService) {
+  constructor(private matchesService:MatchesService, private router: Router) {
 
    }
 
@@ -69,6 +71,10 @@ export class MatchesComponent implements OnInit {
     }
 
     return 'result-row lose'
+  }
+
+  navigateToMatchReport(matchId: number){
+    this.router.navigate(['/matchreport', matchId]);
   }
 
 

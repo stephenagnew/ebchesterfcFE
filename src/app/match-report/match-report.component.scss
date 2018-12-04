@@ -1,0 +1,138 @@
+.pick-team{
+    background-image: url("src\\images\\pick-team.png");
+    background-repeat: no-repeat;
+    background-size: 35% 65%;
+    background-position: center;
+}
+
+.save{
+    float: right;
+    margin: 1rem;
+
+    .btn-primary{
+        background-color: orange;
+    }
+    
+}
+
+.edit{
+    flex:0.5;
+    padding:1rem;
+    margin:1rem;
+    border:solid;
+    background-color: black;
+    border-radius: 5%;
+    cursor:pointer;
+}
+
+.header{
+    text-align: left;
+    h4{
+        color: white;
+        padding: 0.5rem;
+    }
+}
+
+.player-row{
+    display:flex;
+    flex-wrap: wrap;
+    padding:0.5rem;
+    background-color: lightgrey;
+    border-radius: 50px;
+    border: solid;
+    margin: 1rem;
+    text-align: center;
+
+    .player-item{
+        flex:1;
+        font-weight: 600;
+
+    }
+    .index{
+        flex:0.20;
+    }
+
+    .stats{
+        flex:1;
+        font-family: cursive;
+    }
+
+    input{
+        width:2rem;
+        border-radius: 100%;
+        background-color: black;
+        color: white;
+        border: solid;
+        text-align: center;
+    }
+
+}
+
+.player-selection{
+    display:flex;
+    flex-wrap: wrap;
+    padding:0.5rem;
+
+    .player-item{
+        flex:0.1;
+        flex-direction: column;
+        cursor: pointer;
+        background-color:rgb(19, 0, 128);
+        border-radius: 5px;
+        color: white;
+        border: solid;
+        margin: 0.1rem;
+        text-align: center;
+
+    }
+    .index{
+        flex:0.20;
+    }
+
+}
+
+.result-row{
+    display:flex;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+    //height:4rem;
+
+    .team{
+        flex:1;
+        text-align: center;
+        align-self: center;
+        font-weight: 600;
+        font-size: xx-large;
+    }
+    .versus{
+        flex:0.2;
+        text-align: center;
+        align-self: center;
+    }
+    .goals{
+        flex:1;
+        text-align: center;
+        align-self: center;
+        border: solid;
+        color: white;
+        background-color: black;
+        font-size: 4rem;
+
+        input{
+            text-align: center;
+            align-self: center;
+            color: white;
+            background-color: black;
+            font-size: 4rem;
+            width: 100%;
+        }
+    }
+    .text{
+        text-align: center;
+        align-self: center;
+        color: white;
+        flex: 1;
+        font-weight: 500;
+    }
+
+}
